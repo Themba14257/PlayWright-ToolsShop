@@ -27,17 +27,20 @@ test.describe('Validate the Subject Dropdown', () => {
 });
 
 test.describe('Validate the error handling Contact Us form submission', () => {
-    test.step('When I click on the Send button without filling in the required fields', async () => {
-        await actions.scrollToElement(contactPage.sendButton);
-        await actions.clickOnElement(contactPage.sendButton);
-    });
-    test.step("Then I should be presented with toast error message for LastName, firstName, EmailAddress, Subject, and Message", async () => {
-        await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.LastName);
-        await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.FirstName);
+    test('should display error messages for required fields', async () => {
+        test.step('should display error messages for required fields', async () => {
+            await actions.scrollToElement(contactPage.sendButton);
+            await actions.clickOnElement(contactPage.sendButton);
+        });
+        test.step("Then I should be presented with toast error message for LastName, firstName, EmailAddress, Subject, and Message", async () => {
+            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.LastName);
+            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.FirstName);
 
 
-        await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.EmailAddress);
-        await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Subject);
-        await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Message);
+            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.EmailAddress);
+            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Subject);
+            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Message);
+        });
     });
+
 });
