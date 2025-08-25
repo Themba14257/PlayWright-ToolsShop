@@ -1,0 +1,32 @@
+{
+    "Login": {
+        "InvalidEmail": "testuser@toolsShop.com",
+        "InvalidPassword": "testpassword",
+        "toastMessage": {
+            "emailRequired": "Email is required",
+            "passwordRequired": "Password is required",
+            "loginFailed": "Invalid email or password"
+        }
+    },
+    "Contact": {
+        "SubjectDropdown": {
+            "expectedOptions": [
+                "Select a subject *",
+                "Customer service",
+                "Webmaster",
+                "Return",
+                "Payments",
+                "Warranty",
+                "Status of my order"
+            ]
+        },
+        "toastMessage": {
+            "FirstName": "First name is required",
+            "LastName": "Last name is required",
+            "EmailAddress": "Email is required",
+            "Subject": "Subject is required",
+            "Message": "Message is required"
+        }
+        
+    }
+}
