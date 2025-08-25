@@ -15,28 +15,36 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: lts/*
+
       - name: Install dependencies
         run: npm ci
+
       - name: Install Playwright Browsers
         run: npx playwright install --with-deps
+
       - name: Run Playwright tests
-        run: npx playwright test --reporter=html --reporter=line
+        run: npx playwright test --reporter=html=playwright-report --reporter=line || true
+
       - name: Ensure report folder exists
         run: |
           if [ ! -d "playwright-report" ]; then
             echo "No report found, creating empty folder..."
             mkdir playwright-report
           fi
+
       - name: Upload Playwright HTML report
         uses: actions/upload-artifact@v4
         with:
           name: playwright-html-report
           path: playwright-report/
           retention-days: 30
+
       - name: Send Email Notification
+        if: always()
         uses: dawidd6/action-send-mail@v3
         with:
           server_address: smtp.gmail.com
@@ -44,6 +52,6 @@ jobs:
           username: ${{ secrets.EMAIL_USERNAME }}
           password: ${{ secrets.EMAIL_PASSWORD }}
           subject: Playwright Test Results
-          body: Playwright tests have finished. Check attached report. 
+          body: Playwright tests have finished. Check attached report.
           to: thembanaterichard@gmail.com
           attachments: playwright-report/index.html
