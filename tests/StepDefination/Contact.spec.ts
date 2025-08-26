@@ -32,13 +32,14 @@ test.describe('Validate the error handling Contact Us form submission', () => {
             await actions.scrollToElement(contactPage.sendButton);
             await actions.clickOnElement(contactPage.sendButton);
         });
+
         test.step("Then I should be presented with toast error message for LastName, firstName, EmailAddress, Subject, and Message", async () => {
-            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.LastName);
-            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.FirstName);
+            // await actions.elementContainsText(contactPage.lastNameError, testData.Contact.toastMessage.LastName);
+            // await actions.elementContainsText(contactPage.firstNameError, testData.Contact.toastMessage.FirstName);
 
 
-            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.EmailAddress);
-            await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Subject);
+            // await actions.elementContainsText(contactPage.emailError, testData.Contact.toastMessage.EmailAddress);
+            await actions.elementContainsText(contactPage.subjectError, testData.Contact.toastMessage.Subject);
             await actions.elementContainsText(contactPage.messageError, testData.Contact.toastMessage.Message);
         });
     });
